@@ -18,19 +18,18 @@
 .Component-viewer {
   width: auto;
   /* Grows based on content */
-  min-width: 350px;
+  min-width: 400px;
   /* Minimum width */
-  height: auto;
-  /* Grows based on content */
-  min-height: 350px;
+  /* Takes up full height of the screen */
+  min-height: 325px;
   /* Minimum height */
-  margin: auto;
+  margin: 20px;
+  /* Updated margin */
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  /* Aligns child elements along the top */
-  justify-content: flex-start;
-  /* Aligns child elements along the top */
+  justify-content: space-between;
+  align-items: stretch;
+  /* Stretches child elements to fill the width */
   font-size: calc(10px + 2vmin);
   background-color: #fff;
   /* White background */
