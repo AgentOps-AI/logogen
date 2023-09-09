@@ -12,17 +12,32 @@ const Container = styled.div`
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Deep shadow for depth */
 `
 
+const ComponentContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* New style */
+`;
+
+export const ComponentViewerDiv = ({ children }) => (
+    <div className="Component-viewer">
+        <div className="Component-viewer-top-bar">
+            <div className="Component-viewer-circle red"></div>
+            <div className="Component-viewer-circle yellow"></div>
+            <div className="Component-viewer-circle green"></div>
+        </div>
+        <ComponentContainer>
+            {children}
+        </ComponentContainer>
+    </div>
+);
+
 function ComponentViewer({ children }) {
     return (
         <Container>
-            <div className="Component-viewer">
-                <div className="Component-viewer-top-bar">
-                    <div className="Component-viewer-circle red"></div>
-                    <div className="Component-viewer-circle yellow"></div>
-                    <div className="Component-viewer-circle green"></div>
-                </div>
+            <ComponentViewerDiv>
                 {children}
-            </div>
+            </ComponentViewerDiv>
             <div className="feedback-buttons">
                 <FeedbackButtons />
             </div>

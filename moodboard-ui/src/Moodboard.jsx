@@ -1,5 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 const MoodboardContainer = styled.div`
   width: auto;
@@ -14,17 +23,21 @@ const MoodboardContainer = styled.div`
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
+  overflow: auto; /* Updated from 'hidden' to 'auto' to allow scrolling */
   position: relative;
   padding-bottom: 50px;
   border: solid 1px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Deep shadow for depth */
 `;
 
+const AnimatedChild = styled.div`
+  animation: 1s ${fadeIn} ease-out;
+`;
+
 function Moodboard({ children }) {
     return (
         <MoodboardContainer>
-            {children}
+            {React.Children.map(children, child => <AnimatedChild>{child}</AnimatedChild>)}
         </MoodboardContainer>
     );
 }
