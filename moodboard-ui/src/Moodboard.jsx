@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { ComponentViewerDiv } from './ComponentViewer';
 
 const fadeIn = keyframes`
   from {
@@ -37,7 +38,8 @@ const AnimatedChild = styled.div`
 function Moodboard({ children }) {
     return (
         <MoodboardContainer>
-            {React.Children.map(children, child => <AnimatedChild>{child}</AnimatedChild>)}
+
+            {React.Children.map(children, child => <AnimatedChild><ComponentViewerDiv> {child}</ComponentViewerDiv></AnimatedChild>)}
         </MoodboardContainer>
     );
 }

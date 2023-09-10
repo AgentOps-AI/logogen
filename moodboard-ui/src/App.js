@@ -1,35 +1,46 @@
+// App.js
 import React from 'react';
 import './App.css';
-import ComponentViewer, { ComponentViewerDiv } from './ComponentViewer';
-import Moodboard from './Moodboard'; // Import the Moodboard component
-import BohemianStyledButton from './Buttons/StyledButton';
-import Button2 from './Buttons/Button2';
-import Button3 from './Buttons/Button3';
-import Button4 from './Buttons/Button4';
-import Dropdown1 from './Dropdown/Dropdown1'
-import Dropdown2 from './Dropdown/Dropdown2'
-import Dropdown4 from './Dropdown/Dropdown4'
+import ComponentViewer from './ComponentViewer';
+import Moodboard from './Moodboard';
+import useStore from './store';
 
 function App() {
+  const components = useStore(state => state.components);
+  const addComponent = useStore(state => state.addComponent);
+  const dequeueComponent = useStore(state => state.dequeueComponent);
+  const queue = useStore(state => state.queue);
+
+  const handleLike = () => {
+    if (queue.length > 0) {
+      addComponent(queue[0]);
+      dequeueComponent();
+    }
+  };
+
+  const handleDislike = () => {
+    if (queue.length > 0) {
+      dequeueComponent();
+    }
+  };
+
+  const CurrentComponent = queue.length > 0 ? queue[0] : null;
+
   return (
     <div className="App" style={{
-      display: 'flex', // Use Flexbox
+      display: 'flex',
       height: '100vh',
     }}>
-      <ComponentViewer style={{ flex: 1 }}>
-        <BohemianStyledButton />
-      </ComponentViewer> {/* Takes up 1/3 of the screen */}
-      <Moodboard style={{ flex: 2 }} >
-        <ComponentViewerDiv><Dropdown1 /> </ComponentViewerDiv>
-        <ComponentViewerDiv><Dropdown2 /> </ComponentViewerDiv>
-        <ComponentViewerDiv><Dropdown4 /> </ComponentViewerDiv>
-        <ComponentViewerDiv><BohemianStyledButton /> </ComponentViewerDiv>
-        <ComponentViewerDiv><Button2 /> </ComponentViewerDiv>
-        <ComponentViewerDiv><Button3 /> </ComponentViewerDiv>
-        <ComponentViewerDiv><Button4 /> </ComponentViewerDiv>
-      </Moodboard> {/* Takes up 2/3 of the screen */}
+      <ComponentViewer onLike={handleLike} onDislike={handleDislike} style={{ flex: 1 }}>
+        {CurrentComponent ? React.createElement(CurrentComponent) : null}
+      </ComponentViewer>
+      <Moodboard style={{ flex: 2 }}>
+        {components.map((Component, index) => (
+          React.createElement(Component, { key: index })
+        ))}
+      </Moodboard>
     </div>
   );
 }
 
-export default App; 
+export default App;

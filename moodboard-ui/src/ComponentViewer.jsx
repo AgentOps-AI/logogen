@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
 import FeedbackButtons from './FeedbackButtons';
-import styled from 'styled-components'
-
+import styled from 'styled-components';
 
 const Container = styled.div`
     margin: 20px;
@@ -32,17 +31,17 @@ export const ComponentViewerDiv = ({ children }) => (
     </div>
 );
 
-function ComponentViewer({ children }) {
+function ComponentViewer({ children, onLike, onDislike }) {
     return (
         <Container>
             <ComponentViewerDiv>
                 {children}
             </ComponentViewerDiv>
             <div className="feedback-buttons">
-                <FeedbackButtons />
+                <FeedbackButtons onLike={onLike} onDislike={onDislike} />
             </div>
         </Container>
     );
 }
 
-export default ComponentViewer;
+export default ComponentViewer; 

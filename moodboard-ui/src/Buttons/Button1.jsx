@@ -30,17 +30,16 @@ const Button = styled.button`
 
 // Define what props.theme will look like
 const theme = {
-    main: 'mediumseagreen',
-    background: 'white',
-    hover: 'darkgreen'
+  main: 'mediumseagreen',
+  background: 'white',
+  hover: 'darkgreen'
 };
 
-class BohemianStyledButton extends React.Component {
-    render() {
-        return (
-            <Button theme={theme}>Bohemian Button</Button>
-        );
-    }
+const Button1 = () => {
+  return (
+    <Button theme={theme}>Bohemian Button</Button>
+  );
 }
 
-export default BohemianStyledButton;
+export default Button1;
+

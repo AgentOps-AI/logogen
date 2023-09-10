@@ -43,13 +43,13 @@ const ButtonsContainer = styled.div`
   margin: auto;
 `;
 
-function FeedbackButtons() {
+
+function FeedbackButtons({ onLike, onDislike }) {
     return (
         <ButtonsContainer>
-            <LikeButton>👍 Like</LikeButton>
-            <DislikeButton>👎 Dislike</DislikeButton>
+            <LikeButton onClick={onLike}>👍 Like</LikeButton>
+            <DislikeButton onClick={onDislike}>👎 Dislike</DislikeButton>
         </ButtonsContainer>
     );
 }
-
 export default FeedbackButtons;
