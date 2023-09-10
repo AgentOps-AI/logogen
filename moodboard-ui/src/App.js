@@ -14,6 +14,7 @@ function App() {
   const handleLike = () => {
     if (queue.length > 0) {
       addComponent(queue[0]);
+      addLikedTag(queue[0].tags);
       dequeueComponent();
     }
   };
@@ -24,6 +25,12 @@ function App() {
     }
   };
 
+  const [likedTags, setLikedTags] = React.useState([]);
+
+  const addLikedTag = (tags) => {
+    setLikedTags([...likedTags, ...tags]);
+  };
+
   const CurrentComponent = queue.length > 0 ? queue[0].component : null;
   const CurrentTags = queue.length > 0 ? queue[0].tags : [];
 
@@ -32,8 +39,7 @@ function App() {
       display: 'flex',
       height: '100vh',
     }}>
-      <ComponentViewer onLike={handleLike} onDislike={handleDislike} tags={CurrentTags} style={{ flex: 1 }}>
-        {CurrentComponent ? React.createElement(CurrentComponent) : null}
+      <ComponentViewer onLike={handleLike} onDislike={handleDislike} tags={CurrentTags} likedTags={likedTags} style={{ flex: 1 }}>         {CurrentComponent ? React.createElement(CurrentComponent) : null}
       </ComponentViewer>
       <Moodboard style={{ flex: 2 }}>
         {components.map((Component, index) => (

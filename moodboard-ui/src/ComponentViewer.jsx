@@ -48,6 +48,10 @@ const growPop = keyframes`
   100% { transform: scale(0); opacity: 0; }
 `;
 
+const LikedTagsContainer = styled.div`
+    max-height: 180px;
+    overflow-y: auto;
+`;
 
 export const ComponentViewerDiv = ({ children, tags }) => (
     <div className="Component-viewer">
@@ -66,7 +70,7 @@ export const ComponentViewerDiv = ({ children, tags }) => (
 );
 
 
-function ComponentViewer({ children, onLike, onDislike, tags }) {
+function ComponentViewer({ children, onLike, onDislike, tags, likedTags }) {
     const [disliked, setDisliked] = React.useState(false);
     const [liked, setLiked] = React.useState(false);
 
@@ -101,8 +105,15 @@ function ComponentViewer({ children, onLike, onDislike, tags }) {
             <div className="tag-badges">
                 {tags.map((tag, index) => <TagBadge key={index} tag={tag} />)}
             </div>
+
+            <hr />
+
+
+            <LikedTagsContainer>
+                {likedTags.map((tag, index) => <TagBadge key={index} tag={tag} />)}
+            </LikedTagsContainer>
         </Container>
     );
 }
 
-export default ComponentViewer; 
+export default ComponentViewer;  
