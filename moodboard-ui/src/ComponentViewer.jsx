@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import FeedbackButtons from './FeedbackButtons';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 const Container = styled.div`
     margin: 20px;
@@ -12,11 +12,32 @@ const Container = styled.div`
 `
 
 const ComponentContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1; /* New style */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+
+  ${props => props.disliked && css`
+    animation: ${shakeFade} 0.5s linear forwards;
+  `}
 `;
+
+
+const shakeFade = keyframes`
+  0% { transform: translate(1px, 1px) rotate(0deg); opacity: 1; }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); opacity: 0.9; }
+  20% { transform: translate(-3px, 0px) rotate(1deg); opacity: 0.8; }
+  30% { transform: translate(3px, 2px) rotate(0deg); opacity: 0.7; }
+  40% { transform: translate(1px, -1px) rotate(1deg); opacity: 0.6; }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); opacity: 0.5; }
+  60% { transform: translate(-3px, 1px) rotate(0deg); opacity: 0.4; }
+  70% { transform: translate(3px, 1px) rotate(-1deg); opacity: 0.3; }
+  80% { transform: translate(-1px, -1px) rotate(1deg); opacity: 0.2; }
+  90% { transform: translate(1px, 2px) rotate(0deg); opacity: 0.1; }
+  100% { transform: translate(1px, -2px) rotate(-1deg); opacity: 0; }
+`;
+
+
 
 export const ComponentViewerDiv = ({ children }) => (
     <div className="Component-viewer">
@@ -32,16 +53,29 @@ export const ComponentViewerDiv = ({ children }) => (
 );
 
 function ComponentViewer({ children, onLike, onDislike }) {
+    const [disliked, setDisliked] = React.useState(false);
+
+    const handleDislike = () => {
+        setDisliked(true);
+        setTimeout(() => {
+            setDisliked(false);
+            onDislike();
+        }, 500); // same duration as the animation
+    };
+
     return (
         <Container>
             <ComponentViewerDiv>
-                {children}
+                <ComponentContainer disliked={disliked}>
+                    {children}
+                </ComponentContainer>
             </ComponentViewerDiv>
             <div className="feedback-buttons">
-                <FeedbackButtons onLike={onLike} onDislike={onDislike} />
+                <FeedbackButtons onLike={onLike} onDislike={handleDislike} />
             </div>
         </Container>
     );
 }
+
 
 export default ComponentViewer; 
