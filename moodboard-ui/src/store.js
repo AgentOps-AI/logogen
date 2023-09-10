@@ -10,7 +10,15 @@ import { Dropdown4, tags as tags7 } from './Dropdown/Dropdown4';
 
 const useStore = create(set => ({
     components: [],
-    queue: [Button1, Button2, Button3, Button4, Dropdown1, Dropdown2, Dropdown4],
+    queue: [
+        { component: Button1, tags: tags1 },
+        { component: Button2, tags: tags2 },
+        { component: Button3, tags: tags3 },
+        { component: Button4, tags: tags4 },
+        { component: Dropdown1, tags: tags5 },
+        { component: Dropdown2, tags: tags6 },
+        { component: Dropdown4, tags: tags7 },
+    ],
     addComponent: (component) => set(state => ({ components: [...state.components, component] })),
     removeComponent: () => set(state => ({ components: state.components.slice(0, -1) })),
     dequeueComponent: () => set(state => ({ queue: state.queue.slice(1) })),

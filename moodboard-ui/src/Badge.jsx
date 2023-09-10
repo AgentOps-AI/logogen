@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const Badge = styled.span`
   display: inline-block;
   padding: 0.25em 0.4em;
+  margin: 0.5em;
   font-size: 1.25em; // Increased font size for better visibility
   font-weight: 700;
   line-height: 1;

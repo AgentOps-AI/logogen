@@ -4,6 +4,7 @@ import FeedbackButtons from './FeedbackButtons';
 import styled, { css, keyframes } from 'styled-components';
 import TagBadge from './Badge';
 
+
 const Container = styled.div`
     margin: 20px;
     border: 1px solid;
@@ -48,7 +49,7 @@ const growPop = keyframes`
 `;
 
 
-export const ComponentViewerDiv = ({ children }) => (
+export const ComponentViewerDiv = ({ children, tags }) => (
     <div className="Component-viewer">
         <div className="Component-viewer-top-bar">
             <div className="Component-viewer-circle red"></div>
@@ -58,10 +59,14 @@ export const ComponentViewerDiv = ({ children }) => (
         <ComponentContainer>
             {children}
         </ComponentContainer>
+        <div className="tag-badges">
+            {tags && tags.map((tag, index) => <TagBadge key={index} tag={tag} />)}
+        </div>
     </div>
 );
 
-function ComponentViewer({ children, onLike, onDislike }) {
+
+function ComponentViewer({ children, onLike, onDislike, tags }) {
     const [disliked, setDisliked] = React.useState(false);
     const [liked, setLiked] = React.useState(false);
 
@@ -93,7 +98,9 @@ function ComponentViewer({ children, onLike, onDislike }) {
             <div className="feedback-buttons">
                 <FeedbackButtons onLike={handleLike} onDislike={handleDislike} />
             </div>
-            <TagBadge tag={'hello'} />
+            <div className="tag-badges">
+                {tags.map((tag, index) => <TagBadge key={index} tag={tag} />)}
+            </div>
         </Container>
     );
 }

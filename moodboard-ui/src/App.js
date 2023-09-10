@@ -24,23 +24,24 @@ function App() {
     }
   };
 
-  const CurrentComponent = queue.length > 0 ? queue[0] : null;
+  const CurrentComponent = queue.length > 0 ? queue[0].component : null;
+  const CurrentTags = queue.length > 0 ? queue[0].tags : [];
 
   return (
     <div className="App" style={{
       display: 'flex',
       height: '100vh',
     }}>
-      <ComponentViewer onLike={handleLike} onDislike={handleDislike} style={{ flex: 1 }}>
+      <ComponentViewer onLike={handleLike} onDislike={handleDislike} tags={CurrentTags} style={{ flex: 1 }}>
         {CurrentComponent ? React.createElement(CurrentComponent) : null}
       </ComponentViewer>
       <Moodboard style={{ flex: 2 }}>
         {components.map((Component, index) => (
-          React.createElement(Component, { key: index })
+          React.createElement(Component.component, { key: index })
         ))}
       </Moodboard>
     </div>
   );
 }
 
-export default App;
+export default App; 

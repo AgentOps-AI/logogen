@@ -38,8 +38,9 @@ const AnimatedChild = styled.div`
 function Moodboard({ children }) {
     return (
         <MoodboardContainer>
-
-            {React.Children.map(children, child => <AnimatedChild><ComponentViewerDiv> {child}</ComponentViewerDiv></AnimatedChild>)}
+            {React.Children.map(children, child => <AnimatedChild>
+                <ComponentViewerDiv>{child}</ComponentViewerDiv>
+            </AnimatedChild>)}
         </MoodboardContainer>
     );
 }

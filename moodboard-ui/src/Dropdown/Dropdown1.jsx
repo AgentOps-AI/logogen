@@ -64,3 +64,4 @@ export default StyledDropdown;
 const tags = ["Earthy Tones", "Light Contrast", "Rustic Font", "Hover Effect", "Transition", "Cursor Pointer"];
 
 export { tags };
+export const Dropdown1 = StyledDropdown; 

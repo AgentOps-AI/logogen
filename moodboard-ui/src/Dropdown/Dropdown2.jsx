@@ -75,4 +75,4 @@ function StyledDropdown() {
   );
 }
 
-export default StyledDropdown;
+export const Dropdown2 = StyledDropdown;
