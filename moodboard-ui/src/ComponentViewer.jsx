@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import FeedbackButtons from './FeedbackButtons';
 import styled, { css, keyframes } from 'styled-components';
+import TagBadge from './Badge';
 
 const Container = styled.div`
     margin: 20px;
@@ -20,8 +21,11 @@ const ComponentContainer = styled.div`
   ${props => props.disliked && css`
     animation: ${shakeFade} 0.5s linear forwards;
   `}
-`;
 
+  ${props => props.liked && css`
+    animation: ${growPop} 0.5s linear forwards;
+  `}
+`;
 
 const shakeFade = keyframes`
   0% { transform: translate(1px, 1px) rotate(0deg); opacity: 1; }
@@ -37,6 +41,11 @@ const shakeFade = keyframes`
   100% { transform: translate(1px, -2px) rotate(-1deg); opacity: 0; }
 `;
 
+const growPop = keyframes`
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+`;
 
 
 export const ComponentViewerDiv = ({ children }) => (
@@ -54,6 +63,15 @@ export const ComponentViewerDiv = ({ children }) => (
 
 function ComponentViewer({ children, onLike, onDislike }) {
     const [disliked, setDisliked] = React.useState(false);
+    const [liked, setLiked] = React.useState(false);
+
+    const handleLike = () => {
+        setLiked(true);
+        setTimeout(() => {
+            setLiked(false);
+            onLike();
+        }, 500); // same duration as the animation
+    };
 
     const handleDislike = () => {
         setDisliked(true);
@@ -66,16 +84,18 @@ function ComponentViewer({ children, onLike, onDislike }) {
     return (
         <Container>
             <ComponentViewerDiv>
-                <ComponentContainer disliked={disliked}>
+                <ComponentContainer disliked={disliked} liked={liked}>
                     {children}
+                    {liked && <div style={{ position: 'absolute', fontSize: '50px' }}>❤️</div>}
+                    {disliked && <div style={{ position: 'absolute', fontSize: '50px' }}>❌</div>}
                 </ComponentContainer>
             </ComponentViewerDiv>
             <div className="feedback-buttons">
-                <FeedbackButtons onLike={onLike} onDislike={handleDislike} />
+                <FeedbackButtons onLike={handleLike} onDislike={handleDislike} />
             </div>
+            <TagBadge tag={'hello'} />
         </Container>
     );
 }
-
 
 export default ComponentViewer; 

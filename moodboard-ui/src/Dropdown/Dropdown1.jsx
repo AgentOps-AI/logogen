@@ -42,20 +42,25 @@ const DropdownItem = styled.a`
 `;
 
 function StyledDropdown() {
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-    return (
-        <DropdownContainer>
-            <DropdownButton onClick={() => setIsOpen(!isOpen)}>
-                Click me
-            </DropdownButton>
-            <DropdownContent open={isOpen}>
-                <DropdownItem href="#">Link 1</DropdownItem>
-                <DropdownItem href="#">Link 2</DropdownItem>
-                <DropdownItem href="#">Link 3</DropdownItem>
-            </DropdownContent>
-        </DropdownContainer>
-    );
+  return (
+    <DropdownContainer>
+      <DropdownButton onClick={() => setIsOpen(!isOpen)}>
+        Click me
+      </DropdownButton>
+      <DropdownContent open={isOpen}>
+        <DropdownItem href="#">Link 1</DropdownItem>
+        <DropdownItem href="#">Link 2</DropdownItem>
+        <DropdownItem href="#">Link 3</DropdownItem>
+      </DropdownContent>
+    </DropdownContainer>
+  );
 }
 
 export default StyledDropdown;
+
+// Define the general themes of this component
+const tags = ["Earthy Tones", "Light Contrast", "Rustic Font", "Hover Effect", "Transition", "Cursor Pointer"];
+
+export { tags };

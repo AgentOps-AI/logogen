@@ -37,4 +37,7 @@ function Button2() {
     return <StyledButton>Click me</StyledButton>;
 }
 
-export default Button2;
+// Define the general themes of this component
+const tags = ["Fade In", "Box Shadow", "Hover Effect", "Active Effect", "Transition", "Cursor Pointer"];
+
+export { Button2, tags };

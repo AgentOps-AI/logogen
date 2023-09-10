@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+// Tags representing the general themes of this component
+export const tags = ['Dropdown', 'Styled Components', 'Interactive', 'Arial Font', 'Box Shadow', 'Hover State'];
+
 const DropdownContainer = styled.div`
   position: relative;
   width: 200px;
@@ -47,36 +50,36 @@ const ListItem = styled.li`
 `;
 
 function StyledDropdown() {
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
 
-    const options = ['Option 1', 'Option 2', 'Option 3']; // Dummy data
+  const options = ['Option 1', 'Option 2', 'Option 3']; // Dummy data
 
-    const toggling = () => setIsOpen(!isOpen);
+  const toggling = () => setIsOpen(!isOpen);
 
-    const onOptionClicked = value => () => {
-        setSelectedOption(value);
-        setIsOpen(false);
-    };
+  const onOptionClicked = value => () => {
+    setSelectedOption(value);
+    setIsOpen(false);
+  };
 
-    return (
-        <DropdownContainer>
-            <DropdownHeader onClick={toggling}>
-                {selectedOption || "Select an Option"}
-            </DropdownHeader>
-            {isOpen && (
-                <DropdownListContainer>
-                    <DropdownList>
-                        {options.map(option => (
-                            <ListItem onClick={onOptionClicked(option)} key={Math.random()}>
-                                {option}
-                            </ListItem>
-                        ))}
-                    </DropdownList>
-                </DropdownListContainer>
-            )}
-        </DropdownContainer>
-    );
+  return (
+    <DropdownContainer>
+      <DropdownHeader onClick={toggling}>
+        {selectedOption || "Select an Option"}
+      </DropdownHeader>
+      {isOpen && (
+        <DropdownListContainer>
+          <DropdownList>
+            {options.map(option => (
+              <ListItem onClick={onOptionClicked(option)} key={Math.random()}>
+                {option}
+              </ListItem>
+            ))}
+          </DropdownList>
+        </DropdownListContainer>
+      )}
+    </DropdownContainer>
+  );
 }
 
 export default StyledDropdown;

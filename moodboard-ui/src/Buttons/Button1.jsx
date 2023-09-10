@@ -41,5 +41,7 @@ const Button1 = () => {
   );
 }
 
-export default Button1;
+// Define the general themes of this component
+const tags = ["Bohemian", "Green", "White", "Hover Effect", "Box Shadow", "Transition", "Cursor Pointer"];
 
+export { Button1, tags };
