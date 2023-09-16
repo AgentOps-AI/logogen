@@ -64,7 +64,7 @@ export const ComponentViewerDiv = ({ children, tags }) => (
             {children}
         </ComponentContainer>
         <div className="tag-badges">
-            {tags && tags.map((tag, index) => <TagBadge key={index} tag={tag} />)}
+            {tags && tags.map((tag, index) => <TagBadge key={index} badgeType={'options'} tag={tag} />)}
         </div>
     </div>
 );
@@ -110,7 +110,7 @@ function ComponentViewer({ children, onLike, onDislike, tags, likedTags }) {
 
 
             <LikedTagsContainer>
-                {likedTags.map((tag, index) => <TagBadge key={index} tag={tag} />)}
+                {likedTags.map((tag, index) => <TagBadge key={index} badgeType={'options'} tag={tag} />)}
             </LikedTagsContainer>
         </Container>
     );

@@ -14,7 +14,7 @@ const Badge = styled.span`
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: 0.25rem;
-  background-color: #F5F5DC; // Changed background color to lighter beige
+  background-color: ${props => props.badgeType === 'options' ? '#ADD8E6' : '#F5F5DC'}; // Changed background color based on badge type
   border: 1px solid #ccc; // Added border
   box-shadow: 0px 0px 5px rgba(0,0,0,0.1); // Added light shadow
 
@@ -24,10 +24,10 @@ const Badge = styled.span`
 `;
 
 // Badge component
-const TagBadge = ({ tag }) => {
-    return (
-        <Badge>{tag}</Badge>
-    );
+const TagBadge = ({ tag, badgeType }) => {
+  return (
+    <Badge badgeType={badgeType}>{tag}</Badge>
+  );
 }
 
 export default TagBadge;
